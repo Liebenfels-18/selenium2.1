@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CallbackTest {
     private WebDriver driver;
@@ -99,12 +100,12 @@ class CallbackTest {
     }
 
     @Test
-    void shouldTestEmptyCheckbox(){
+    void shouldTestEmptyCheckbox() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Никита Ярыч");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79997775533");
         driver.findElement(By.className("button")).click();
-        boolean isChecked = driver.findElement(By.cssSelector("[data-test-id=agreement].checkbox")).isSelected();
-        assertEquals(false, isChecked);
+        boolean checkbox = driver.findElement(By.cssSelector("[data-test-id=agreement].input_invalid")).isDisplayed();
+        assertTrue(checkbox);
     }
 }
